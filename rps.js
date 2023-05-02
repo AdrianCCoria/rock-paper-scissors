@@ -22,25 +22,31 @@ function playRound(playerSelection,computerSelection) {
         if (computerSelection === "paper") {
             console.log("Computer chose paper!");
             console.log("Paper beats Rock - You Lose!");
+            computerWins += 1;
         } else {
             console.log("Computer chose scissors!");
             console.log("Rock beats scissors - You Win!");
+            playerWins += 1;
         }
    } else if (playerSelection === "paper") {
         if (computerSelection === "rock") {
             console.log("Computer chose rock!");
             console.log("Paper beats Rock - You Win!");
+            playerWins += 1;
         } else {
             console.log("Computer chose scissors!");
             console.log("Scissors beat Paper - You Lose!");
+            computerWins += 1;
         } 
     } else if (playerSelection === "scissors") {
         if (computerSelection === "rock") {
             console.log("Computer chose rock!");
             console.log("Rock beats Scissors - You Lose!");
+            computerWins += 1;
         } else {
             console.log("Computer chose paper!");
             console.log("Scissors beat Paper - You Win!");
+            playerWins += 1;
         } 
     } else {
         alert("Not a valid choice - Try Again");
@@ -53,6 +59,25 @@ function getUserInput() {
     return input;
 }
 
-playRound(getUserInput(),getComputerChoice());
+function displayScore() {
+    console.log("Player: ", playerWins);
+    console.log("Computer: ", computerWins);
+}
 
+// playRound(getUserInput(),getComputerChoice());
 // console.log(getUserInput());
+
+function game() {
+    for (let i = 0; i < 5; i++) {
+        console.log("Round ", i + 1);
+        playRound(getUserInput(),getComputerChoice());
+        displayScore();
+    }
+    if (playerWins > computerWins) {
+        alert("YOU WON THE GAME");
+    } else {
+        alert("YOU LOST - GAME OVER");
+    }
+}
+
+game();
